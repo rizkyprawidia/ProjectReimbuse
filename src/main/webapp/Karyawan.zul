@@ -1,0 +1,70 @@
+<?page title="Halaman Karyawan" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Data Karyawan" border="normal"
+	apply="org.zkoss.bind.BindComposer">
+	
+	
+	<div style="text-align:center">
+					<label value="search" />
+						<textbox value="" onOK="" />
+		</div>
+	
+	<grid>
+		
+			<columns>
+				<column width="15%" label=""></column>
+				<column width="20%" label=""></column>
+				<column width="1%" label=""></column>
+				<column width="10%" label=""></column>
+				<column width="54%" label=""></column>
+			</columns>
+			
+			
+			<rows>
+			
+			
+				<row>
+					<label value="Nama Karyawan" style="float:right" />
+					<textbox constraint="no empty : harus Diisi"/>
+						
+					<label value="" />
+					<label value="" />
+					<label value="" />
+				</row>
+				
+				<row>
+					<label value="NIK" style="float:right" />
+					<textbox constraint="no empty : harus Diisi"/>
+						
+					<label value="" />
+					<label value="" />
+					<label value="" />
+				</row>
+				
+			<row>
+					<label value="No Rekening" style="float:right" />
+					<textbox constraint="no empty : harus Diisi"/>
+						
+					<label value="" />
+					<label value="" />
+					<label value="" />
+				</row>
+
+				<row>
+					<label value="Project" style="float:right" />
+					<combobox constraint="no empty : harus diisi">
+						
+							
+						
+					</combobox>
+					
+					
+		<space />
+		
+					
+				</row>
+			</rows>
+		</grid>
+		
+	</window>
+</zk>

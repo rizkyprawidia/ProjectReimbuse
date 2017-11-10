@@ -1,31 +1,47 @@
 <?page title="Halaman Karyawan" contentType="text/html;charset=UTF-8"?>
-<zk>
+<zk xmlns:c="client">
 <window title="Data Karyawan" border="normal"
 	apply="org.zkoss.bind.BindComposer">
 	
 	
-	<div style="text-align:center">
+	<!-- <div style="text-align:center">
 					<label value="search" />
 						<textbox value="" onOK="" />
-		</div>
+		</div> -->
+	
 	
 	<grid>
 		
 			<columns>
-				<column width="15%" label=""></column>
-				<column width="20%" label=""></column>
-				<column width="1%" label=""></column>
-				<column width="10%" label=""></column>
-				<column width="54%" label=""></column>
+				<column width="120px" label=""></column>
+				<column label=""></column>
+				<column width="200px%" label=""></column>
+				
 			</columns>
 			
 			
 			<rows>
 			
 			
+			
+				<row>
+					<!-- <label value="Periode" style="float:right" />
+					<combobox constraint="no empty : harus diisi"/> -->
+					
+					 
+					 <label value="Periode" style="float:right" />
+                <datebox id="db3" cols="20" format="long" onCreate="self.value = new Date()"  />
+            
+           
+						
+					
+				</row>
+			
+			
 				<row>
 					<label value="Nama Karyawan" style="float:right" />
-					<textbox constraint="no empty : harus Diisi"/>
+					<combobox constraint="no empty : harus diisi"/>
+					
 						
 					<label value="" />
 					<label value="" />
@@ -34,7 +50,9 @@
 				
 				<row>
 					<label value="NIK" style="float:right" />
-					<textbox constraint="no empty : harus Diisi"/>
+					<textbox value ="" readonly="true"/>
+					
+					
 						
 					<label value="" />
 					<label value="" />
@@ -43,7 +61,7 @@
 				
 			<row>
 					<label value="No Rekening" style="float:right" />
-					<textbox constraint="no empty : harus Diisi"/>
+					<textbox value ="" readonly="true"/>
 						
 					<label value="" />
 					<label value="" />
@@ -52,11 +70,11 @@
 
 				<row>
 					<label value="Project" style="float:right" />
-					<combobox constraint="no empty : harus diisi">
+					<textbox value ="" readonly="true"/>
 						
 							
 						
-					</combobox>
+			
 					
 					
 		<space />
@@ -65,6 +83,151 @@
 				</row>
 			</rows>
 		</grid>
+		
+		 <groupbox closable="false" sclass="z-demo-config" style="padding: 10px;">
+        <caption label="Project"></caption>
+        <tabbox id="tbx1" hflex="1">
+            <!-- Server side customize event(onTabAdd) handling -->
+            <attribute name="onTabAdd">
+                Tab newTab = new Tab("New Tab " + i);
+                newTab.setSelected(true);
+                Tabpanel newTabpanel = new Tabpanel();
+                newTabpanel.appendChild(new Label("New Tabpanel Text " + i++));
+                tbx1.getTabs().insertBefore(newTab, plusTab);
+                newTabpanel.setParent(tbx1.getTabpanels());
+            </attribute>
+            <tabs>
+                <tab>Tab A</tab>
+                <tab>Tab B</tab>
+                <tab>Tab C</tab>
+                <!-- Plus Tab - used to trigger add tab event -->
+                <tab id="plusTab" label="+" sclass="plusTab">
+                    <!-- Overwrite default click handing function-->
+                    <attribute c:name="doClick_">
+                        function (evt) { 
+                                //Send an event named "onTabAdd" to tabbox on server 
+                        zAu.send(new zk.Event(evt.target.getTabbox(), "onTabAdd", null)); 
+                        }
+                    </attribute>
+                </tab>
+            </tabs>
+            <tabpanels>
+                <tabpanel>Content A</tabpanel>
+                <tabpanel>Content B</tabpanel>
+                <tabpanel>Content C</tabpanel>
+            </tabpanels>
+        </tabbox>
+    </groupbox>
+    
+    <groupbox closable="false" sclass="z-demo-config" style="padding: 10px;">
+        <caption label="Claim"></caption>
+		<button label="Add" /><!-- onClick="@command('addDetail')" visible="@load(vm.visible)" --> 
+		<button label="Edit" /><!-- onClick="@command('addDetail')" visible="@load(vm.visible)" -->
+		
+		<grid>
+		
+		
+			<columns>
+				<column width="15%" label=""></column>
+				<column width="20%" label=""></column>
+				<column width="1%" label=""></column>
+				<column width="15%" label=""></column>
+				<column width="54%" label=""></column>
+				
+			</columns>
+			
+			
+			<rows>
+			
+			
+			
+				<row>
+					
+                    <label value="Transport" style="float:right" />
+                    
+                        <textbox value = ""   />
+                    
+					
+					<label value=""/>
+					                    
+                      <label value="Taxi" style="float:right" />
+                    
+                        <textbox value = "" />
+                    
+                   
+                </row>
+			
+			
+				<row>
+					<label value="Parkir" style="float:right" />
+					<textbox value = "" />
+					
+					<label value=""/>
+					
+					<label value="Lembur" style="float:right" />
+					<textbox value = "" />
+					
+											
+					
+				</row>
+				
+				<row>
+					<label value="Kesehatan" style="float:right" />
+					<textbox value = "" />
+					
+					
+						
+					<label value="" />
+					
+					<label value="Entertain Internal" style="float:right" />
+					<textbox value = "" />
+					
+					<label value="" />
+					<label value="" />
+				</row>
+				
+			<row>
+					<label value="BPJS" style="float:right" />
+					<textbox value = "" />
+					
+					<label value="" />
+					
+					<label value="Entertain External" style="float:right" />
+					<textbox value = "" />
+						
+					
+				</row>
+
+				<row>
+					<label value="Reward Monthly" style="float:right" />
+					<textbox value = "" />
+					
+					<label value ="" />
+					
+					<label value ="" />
+					<textbox value = "Lain-lain" />
+						
+					
+				</row>
+				
+				<row>
+					<label value="Reward Triwulan" style="float:right" />
+					<textbox value = "" />
+					
+				
+					
+					
+						
+					
+				</row>
+				
+				
+				
+			</rows>
+		</grid>
+		  </groupbox>
+		  
+		  
 		
 	</window>
 </zk>
